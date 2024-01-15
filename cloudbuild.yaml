@@ -1,0 +1,36 @@
+steps:
+    # Docker Build
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "-t",
+              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
+              ".",
+          ]
+
+    # Docker Push
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "push",
+              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
+          ]
+
+    # Entrypoint, timeout and environment variables
+    - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+      entrypoint: "gcloud"
+      timeout: 240s
+      args:
+          [
+              "run",
+              "deploy",
+              "nextjs-image",
+              "--image",
+              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
+              "--region",
+              "us-west2",
+          ]
+
+images:
+    - "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1"
