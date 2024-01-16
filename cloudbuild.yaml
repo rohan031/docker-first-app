@@ -20,7 +20,6 @@ steps:
     # Entrypoint, timeout and environment variables
     - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
       entrypoint: "gcloud"
-      timeout: 240s
       args:
           [
               "run",
@@ -34,3 +33,5 @@ steps:
 
 images:
     - "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1"
+options:
+  logging: CLOUD_LOGGING_ONLY
