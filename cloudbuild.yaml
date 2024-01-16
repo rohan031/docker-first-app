@@ -1,37 +1,13 @@
 steps:
-    # Docker Build
-    - name: "gcr.io/cloud-builders/docker"
-      args:
-          [
-              "build",
-              "-t",
-              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
-              ".",
-          ]
-
-    # Docker Push
-    - name: "gcr.io/cloud-builders/docker"
-      args:
-          [
-              "push",
-              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
-          ]
-
-    # Entrypoint, timeout and environment variables
-    - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-      entrypoint: "gcloud"
-      args:
-          [
-              "run",
-              "deploy",
-              "nextjs-image",
-              "--image",
-              "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1",
-              "--region",
-              "us-west2",
-          ]
-
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1', '.']
+# Push the image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'nextjs-docker-gcr-image', '--image', 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1', '--region', 'us-west2']
 images:
-    - "us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1"
-options:
-  logging: CLOUD_LOGGING_ONLY
+- 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1'
