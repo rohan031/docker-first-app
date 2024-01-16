@@ -8,6 +8,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'nextjs-docker-gcr-image', '--image', 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1', '--region', 'us-west2']
+  args: ['run', 'deploy', 'nextjs-image', '--image', 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1', '--region', 'us-west2']
 images:
 - 'us-west2-docker.pkg.dev/nextjs-411012/nextjs/nextjs-image:tag1'
