@@ -98,7 +98,7 @@ export default function Home() {
 				</a>
 
 				<a
-					href="https://mennr.tech"
+					href="https://www.mennr.tech"
 					className={styles.card}
 					target="_blank"
 					rel="noopener noreferrer"
