@@ -96,6 +96,18 @@ export default function Home() {
 						with Vercel.
 					</p>
 				</a>
+
+				<a
+					href="https://mennr.tech"
+					className={styles.card}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<h2>
+						Saini <span>-&gt;</span>
+					</h2>
+					<p>Saini bhaii kii duniya haii</p>
+				</a>
 			</div>
 		</main>
 	);
