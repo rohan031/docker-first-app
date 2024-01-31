@@ -104,7 +104,7 @@ export default function Home() {
 					rel="noopener noreferrer"
 				>
 					<h2>
-						Saini <span>-&gt;</span>
+						{process.env.NEXT_PUBLIC_NAME} <span>-&gt;</span>
 					</h2>
 					<p>Saini bhaii kii duniya haii</p>
 				</a>
